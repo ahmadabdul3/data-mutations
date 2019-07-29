@@ -1,4 +1,3 @@
-require('module-alias/register');
 import path from 'path';
 import validateArgs from './validations';
 import { extractArgs, normalizeFileName } from './utils';
