@@ -24,23 +24,6 @@ export default function resolveMutator({ cliArgs }) {
   }
 }
 
-function noOp() {
-  return {
-    name: 'NO OP MUTATION',
-    mutate: () => {
-      console.log('');
-      console.log('No file or version specified - no mutation to run');
-      console.log('');
-      console.log('- To select a specific mutation file to execute, run the following:');
-      console.log(`  'npm run post-migration-data-mutations file=fileName type=type'`);
-      console.log('');
-      console.log('- To select a specific release mutation to execute, run the following:');
-      console.log(`  'npm run post-migration-data-mutations version=x.x.x'`);
-      console.log('');
-    }
-  };
-}
-
 function releaseMutationSet({ args }) {
   const version = args[CLI_ARG_KEY__VERSION];
   const hook = args[CLI_ARG_KEY__HOOK];
