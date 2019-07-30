@@ -11,17 +11,17 @@ import {
   LOGGING__ERROR_TITLE,
 } from './constants';
 
-const VALID_TYPES__MESSAGE = `Valid types are:\n`
+const MESSAGE__VALID_TYPES = `Valid types are:\n`
   + ` - type=${TYPE_VALUE__SEEDER}\n`
   + ` - type=${TYPE_VALUE__SINGLE_MUTATION}\n`
   + ` - type=${TYPE_VALUE__TEST_DATA}\n`
   + `Please use one of these values with the 'type' option`;
-const VALID_HOOKS__MESSAGE = `Valid hooks are:\n`
+const MESSAGE__VALID_HOOKS = `Valid hooks are:\n`
   + ` - hook=${HOOK_VALUE__PRE_MIGRATION}\n`
   + ` - hook=${HOOK_VALUE__POST_MIGRATION}\n`
   + `Please use one of these values with the 'hook' option`;
 
-const USE_HELP__MESSAGE = `\n\nTo learn more about using data mutations, run`
+const MESSAGE__USE_HELP = `\n\nTo learn more about using data mutations, run`
   + ` 'npm run data-mutations-help'`;
 
 export default function validateArgs({ args }) {
@@ -38,7 +38,7 @@ function ensureArgsExist({ args }) {
       + ` option when running mutations.`
       + `\n\nIf using the 'file' option don't forget to also provide a 'type' option.`
       + `\nIf using the 'version' option don't forget to also provide a 'hook' option.`
-      + `${USE_HELP__MESSAGE}`
+      + `${MESSAGE__USE_HELP}`
     );
   }
 }
@@ -49,7 +49,7 @@ function ensureNoOverlappingArgs({ args }) {
   if (args[CLI_ARG_KEY__VERSION] && args[CLI_ARG_KEY__FILE]) {
     throw(
       `${LOGGING__ERROR_TITLE}Please use ONLY ONE of 'file=file-name' or 'version=x.x.x'`
-      + ` options, not both. ${USE_HELP__MESSAGE}`
+      + ` options, not both. ${MESSAGE__USE_HELP}`
     );
   }
 }
@@ -62,7 +62,7 @@ function ensureValidTypeExists({ args }) {
   if (!type) {
     throw(
       `${LOGGING__ERROR_TITLE}Please provide a 'type=x' option when using the 'file=file-name'`
-      + ` mutation option. ${VALID_TYPES__MESSAGE}. ${USE_HELP__MESSAGE}`
+      + ` mutation option. ${MESSAGE__VALID_TYPES}. ${MESSAGE__USE_HELP}`
     );
   }
 
@@ -78,8 +78,8 @@ function validateTypeValue({ type }) {
 
   if (!validTypes[type]) {
     throw(
-      `${LOGGING__ERROR_TITLE}The provided type '${type}', is not valid. ${VALID_TYPES__MESSAGE}`
-      + `${USE_HELP__MESSAGE}`
+      `${LOGGING__ERROR_TITLE}The provided type '${type}', is not valid. ${MESSAGE__VALID_TYPES}`
+      + `${MESSAGE__USE_HELP}`
     );
   }
 }
@@ -89,7 +89,7 @@ function ensureHookExists({ args }) {
   if (!hook) {
     throw(
       `${LOGGING__ERROR_TITLE}Please provide a 'hook=x' option when using the 'version=x.x.x'`
-      + ` mutation option. ${VALID_HOOKS__MESSAGE}. ${USE_HELP__MESSAGE}`
+      + ` mutation option. ${MESSAGE__VALID_HOOKS}. ${MESSAGE__USE_HELP}`
     );
   }
 
@@ -104,8 +104,8 @@ function validateHookValue({ hook }) {
 
   if (!validHooks[hook]) {
     throw(
-      `${LOGGING__ERROR_TITLE}The provided hook '${hook}', is not valid. ${VALID_HOOKS__MESSAGE}`
-      + `${USE_HELP__MESSAGE}`
+      `${LOGGING__ERROR_TITLE}The provided hook '${hook}', is not valid. ${MESSAGE__VALID_HOOKS}`
+      + `${MESSAGE__USE_HELP}`
     );
   }
 }
